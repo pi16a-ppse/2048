@@ -31,19 +31,16 @@ ctx.fillText(dis[i][j], i*100+50,j*100+60);
 
 function right(){
 
-for(var i=0;i<4;i++)
-{
-//get it
-var ar=[0,0,0,0];
-var vr=[];
-for(var j=0;j<4;j++){
-if(dis[j][i]!=0)
-vr.push(dis[j][i]);
-
-ar[j]= dis[j][i];
-}
-
-//reverse the vr
+    for(var i=0;i<4;i++)
+    {
+    var ar=[0,0,0,0];
+    var vr=[];
+    for(var j=0;j<4;j++){
+        if(dis[j][i]!=0)
+        vr.push(dis[j][i]);
+        ar[j]= dis[j][i];
+    }
+        
 var tr=[];
 for(var k=vr.length-1;k>=0;k--)
 {
@@ -52,7 +49,6 @@ for(var k=vr.length-1;k>=0;k--)
 
 for(var k=0;k<vr.length;k++)
 vr[k]=tr[k];
-
 
 // vr.length determines the total number of actual characters.
 // change the vr
@@ -122,9 +118,6 @@ vr[k]=tr[k];
 
 for(var k=0;k<4;k++)
 dis[k][i]=vr[k];
-
-
-
 
 }
 
@@ -305,15 +298,10 @@ vr.push(0);
 for(var k=0;k<4;k++)
 dis[i][k]=vr[k];
 
-
-
-
 }
 
 
 }
-
-
 
 function left(){
 
@@ -391,16 +379,16 @@ dis[k][i]=vr[k];
 }
 
 display();
-
 var disable=0;
+
 function gameover(){
 ctx.font = "50px Comic Sans MS";
 ctx.fillStyle = "red";
 ctx.textAlign = "center";
-ctx.fillText("You lose!", 200,180); 
+ctx.fillText("Game over!", 200,180); 
 disable=1;
 
-ctx.fillStyle = "green";
+ctx.fillStyle = "red";
 ctx.textAlign="center";
 ctx.font="30px Comic Sans MS";
     
@@ -413,7 +401,7 @@ count+=dis[i][j];
 
 }
 
-ctx.fillText("Your Score is "+count.toString(),200,220);
+ctx.fillText("Счет: "+count.toString(),200,220);
 
 }
 
@@ -421,9 +409,6 @@ ctx.fillText("Your Score is "+count.toString(),200,220);
 window.addEventListener('keydown', function (e) {
     if(disable==1)
 	   return;
-	
-	 var audio = new Audio('gameplay.mp3');
-     audio.play();
 	
     key = e.keyCode;
     if(key==37){
@@ -443,7 +428,7 @@ window.addEventListener('keydown', function (e) {
     	down();
     }
 	
-	//if everything is full.
+	//когда все заполнено
 	var count=0;
 	for(var i=0;i<4;i++)
 	for(var j=0;j<4;j++){
