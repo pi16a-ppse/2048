@@ -1,3 +1,13 @@
+/**
+* Элементы с id: канвас, поле для задания игровой сетки игроком,
+* куда отображать счет
+* @param {integer} score - игровой счет
+* @param {integer} size - размер игрового поля
+* @param {integer} width - ширина клетки
+* @param {integer} fontSize - размер шрифта
+* @param {bool} loss - флаг для проверки проигрыша игрока
+*/
+
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
@@ -15,7 +25,8 @@ startGame();
 
 /**
  * Функция позволяет изменить размер поля: если указанный размер
- * находится в границах от 2 до 20 - пересчитывается поле, игра создается заново
+ * находится в границах от 2 до 20 - пересчитывается поле, 
+ * игра создается заново
  * @returns {void}
  */
 
@@ -53,8 +64,8 @@ function createCells() {
         cells[i] = [];
     for(j = 0; j < size; j++) {
         cells[i][j] = new cell(i, j);
-    }
-  }
+    	}
+	}
 }
 
 /**
@@ -67,20 +78,61 @@ function drawCell(cell) {
     ctx.beginPath();
     ctx.rect(cell.x, cell.y, width, width);
     switch (cell.value){
-        case 0 : ctx.fillStyle = '#A9A9A9'; break;
-        case 2 : ctx.fillStyle = '#D2691E'; break;
-        case 4 : ctx.fillStyle = '#FF7F50'; break;
-        case 8 : ctx.fillStyle = '#ffbf00'; break;
-        case 16 : ctx.fillStyle = '#bfff00'; break;
-        case 32 : ctx.fillStyle = '#40ff00'; break;
-        case 64 : ctx.fillStyle = '#00bfff'; break;
-        case 128 : ctx.fillStyle = '#FF7F50'; break;
-        case 256 : ctx.fillStyle = '#0040ff'; break;
-        case 512 : ctx.fillStyle = '#ff0080'; break;
-        case 1024 : ctx.fillStyle = '#D2691E'; break;
-        case 2048 : ctx.fillStyle = '#FF7F50'; break;
-        case 4096 : ctx.fillStyle = '#ffbf00'; break;
-        default : ctx.fillStyle = '#ff0080';
+        case 0: {
+        	ctx.fillStyle = '#A9A9A9'; 
+        	break;
+        }
+        case 2: {
+        	ctx.fillStyle = '#D2691E'; 
+        	break;
+        }
+        case 4: { 
+        	ctx.fillStyle = '#FF7F50'; 
+        	break;
+        }
+        case 8: { 
+        	ctx.fillStyle = '#ffbf00'; 
+        	break;
+        }
+        case 16: { 
+        	ctx.fillStyle = '#bfff00'; 
+        	break;
+        }
+        case 32: { 
+        	ctx.fillStyle = '#40ff00'; 
+        	break;
+        }
+        case 64: { 
+        	ctx.fillStyle = '#00bfff'; 
+        	break;
+        }
+        case 128: { 
+        	ctx.fillStyle = '#FF7F50'; 
+        	break;
+        }
+        case 256: {
+        	ctx.fillStyle = '#0040ff'; 
+        	break;
+        }
+        case 512: {
+        	ctx.fillStyle = '#ff0080'; 
+        	break;
+        }
+        case 1024: {
+        	ctx.fillStyle = '#D2691E'; 
+        	break;
+        }
+        case 2048: {
+        	ctx.fillStyle = '#FF7F50'; 
+        	break;
+        }
+        case 4096: {
+        	ctx.fillStyle = '#ffbf00'; 
+        	break;
+        }
+        default: {
+        	ctx.fillStyle = '#ff0080';
+        }
     }
     
     ctx.fill();
@@ -103,8 +155,10 @@ function canvasClean() {
 }
 
 /**
- * В зависимости от нажатия стрелки вызывается соотвествующая функция 
+ * В зависимости от нажатия стрелки вызывается соответствующая функция 
  * перемещения клеток
+ * @param  {document#event:onkeydown} event - событие нажатия клавиши
+ * @listens document#onkeydown 
  * @returns {void}
  */
 
@@ -120,7 +174,7 @@ document.onkeydown = function (event) {
         moveLeft(); 
     }
     scoreLabel.innerHTML = 'Счет : ' + score;
-}
+	}
 }
 
 /**
